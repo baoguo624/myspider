@@ -35,6 +35,12 @@ public class UserPage {
 	
 		String content  = down1.getContentFormUrl(url);
 		StringBuffer stf2 = new StringBuffer();
+		String adddel[] = content.split("<a name=\"diff-stat\"></a>");
+		if(adddel.length!=1){
+			stf2.append(HrefOfCodePage.getChangeFile(adddel[1]));
+			stf2.append(HrefOfCodePage.getAddMete(adddel[1]));
+			stf2.append(HrefOfCodePage.getDelMete(adddel[1])+"\n");
+		}
 		String contentpart[] = content.split("<div id=\"diff-[0-9]+\"");
 		for(int i = 0;i<contentpart.length;i++){
 		stf2.append(HrefOfCodePage.getTitle(contentpart[i]));

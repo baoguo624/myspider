@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class HrefOfCodePage {
 	  public static String getHrefOfContent(String content)  //
 	    {  
-	       // System.out.println("\nÏÂÌõ¼ÇÂ¼Îª£º");  
+	       // System.out.println("\nä¸‹æ¡è®°å½•ä¸ºï¼š");  
 	        String[] contents = content.split("<a href=\"");  
 	      
 	       // System.out.println(contents.length);
@@ -23,13 +23,13 @@ public class HrefOfCodePage {
 	    		Pattern pattern0 = Pattern.compile(pat1);
 	    		Matcher matcher0 = pattern0.matcher(aHref[i]);
 	    		if(matcher0.matches()){
-	    			//System.out.println(aHref[i]+"ÊÇ");
+	    			//System.out.println(aHref[i]+"æ˜¯");
 	    			return aHref[i];
 	    			}
 	    	}
 			 return "nothing";
 	    }
-	    public static String getTitle(String content){ //µÃµ½¾Ö²¿´úÂëÖĞÎÄ¼şÃû³Æ
+	    public static String getTitle(String content){ //å¾—åˆ°å±€éƒ¨ä»£ç ä¸­æ–‡ä»¶åç§°
 	    	String pat1 = " <span class=\"js-selectable-text\" title=\"";
 	    	String title[] = content.split(pat1);
 	    	//int start = title[1].indexOf(";\">");
@@ -42,7 +42,7 @@ public class HrefOfCodePage {
 	    	}
 	    	
 	    }
-	    public static String getType(String content){ //µÃµ½¾Ö²¿´úÂëÖĞµÄ¿âÀàĞÍ
+	    public static String getType(String content){ //å¾—åˆ°å±€éƒ¨ä»£ç ä¸­çš„åº“ç±»å‹
 	    	String pat1 = "<p class=\"repo-list-meta\">[ ]*";
 	    	String title[] = content.split(pat1);
 	    	//int start = title[1].indexOf(";\">");
@@ -52,7 +52,7 @@ public class HrefOfCodePage {
 	    	
 	    	
 	    }
-	    public static String getTime(String content){   //µÃµ½¾Ö²¿´úÂëµÄ´Ë¿âµÄÊ±¼ä
+	    public static String getTime(String content){   //å¾—åˆ°å±€éƒ¨ä»£ç çš„æ­¤åº“çš„æ—¶é—´
 	    	String pat1 = " authored <time datetime=\"";
 	    	String title[] = content.split(pat1);
 	    	  int end = title[1].indexOf("\"");
@@ -60,7 +60,7 @@ public class HrefOfCodePage {
 	    	return DateDemo.switchTimeType(title[1].substring(0, end));
 	    	    	
 	    }
-	    public static String getAuthor(String content){       //µÃµ½¾Ö²¿´úÂëµÄcommit×÷Õß
+	    public static String getAuthor(String content){       //å¾—åˆ°å±€éƒ¨ä»£ç çš„commitä½œè€…
 	    	String pat1 = "<img alt=\"";
 	    	String title[] = content.split(pat1);
 	    	 StringBuffer stf = new StringBuffer();
@@ -73,14 +73,14 @@ public class HrefOfCodePage {
 	    	}
 	    	return stf.toString();
 	    }
-	    public static String getName(String content){       //µÃµ½¾Ö²¿´úÂëµÄ¿âÃû³Æ
+	    public static String getName(String content){       //å¾—åˆ°å±€éƒ¨ä»£ç çš„åº“åç§°
 	    	String name = null;
 	    	name = getHrefOfContent( content).substring(19); 
 	    	  
 	    	return name;
 	    	    	
 	    }
-	    public static String getLineInfoBak(String content) {  //¸ù¾İ×óÓÒÁ½¸öĞĞºÅ²»Í¬£¬À´³éÈ¡³ö±ä¸ü´úÂë£¬tops£º Ê§°Ü¡£ ×÷Îª±¸·İ
+	    public static String getLineInfoBak(String content) {  //æ ¹æ®å·¦å³ä¸¤ä¸ªè¡Œå·ä¸åŒï¼Œæ¥æŠ½å–å‡ºå˜æ›´ä»£ç ï¼Œtopsï¼š å¤±è´¥ã€‚ ä½œä¸ºå¤‡ä»½
 	    	
 	    	String linecode[] = content.split("<tr>");
 	    	StringBuffer stf = new StringBuffer();
@@ -118,12 +118,12 @@ public class HrefOfCodePage {
 	    	return stf.toString();
 	    }	 
 	    
-	    public static String getLineInfo(String content) {                // »ñÈ¡Ôö¼ÓÉ¾³ıµÄÄÚÈİ
+	    public static String getLineInfo(String content) {                // è·å–å¢åŠ åˆ é™¤çš„å†…å®¹
 	    	
 	    	String linecode[] = content.split("<tr>");
 	    	StringBuffer stf = new StringBuffer();
 	    	for(int i =1;i<linecode.length;i++){
-	    		//¾Ö²¿´úÂë¿é
+	    		//å±€éƒ¨ä»£ç å—
 	    			{																
 	    				String entity[] = linecode[i].split("<td class=\"blob-code blob-code-[a-z]+\">[+]");
 	    				if(entity.length ==2){
@@ -131,7 +131,7 @@ public class HrefOfCodePage {
 	    					stf.append("+"+entity[1].substring(0, entityEnd)+"\n");
 	    				}
 	    			}
-	    			//¾Ö²¿´úÂë¿é
+	    			//å±€éƒ¨ä»£ç å—
 	    			{
 	    				String entity[] = linecode[i].split("<td class=\"blob-code blob-code-[a-z]+\">[-]");
 	    				if(entity.length ==2){
@@ -145,6 +145,46 @@ public class HrefOfCodePage {
 	    	return stf.toString();
 	    }
 	    
+	    public static String getChangeFile(String content){       //å¾—åˆ°å±€éƒ¨ä»£ç çš„change file
+	    	String pat1 = "<button type=\"button\" class=\"button-link js-details-target\">";
+	    	String title[] = content.split(pat1);
+	    	 StringBuffer stf = new StringBuffer();
+	    	//System.out.println(title[1]+title.length);
+	    	 if(title.length !=1){
+	    	  int end = title[1].indexOf("</button>");
+	    	  
+	    	stf.append(title[1].substring(0,end));
+	    	 }
+	    	
+	    	return stf.toString();
+	    }
+	    public static String getAddMete(String content){       //å¾—åˆ°å±€éƒ¨ä»£ç çš„change file add é‡
+	    	String pat1 = "<span class=\"diffstat-icon\">+</span>";
+	    	String title[] = content.split(pat1);
+	    	 StringBuffer stf = new StringBuffer();
+	    	System.out.println("title[].length"+title.length);
+	    	 if(title.length !=1){
+	    		 System.out.print(title[1]);
+	    	  int end = title[1].indexOf("</span>");
+	    	  
+	    	stf.append(title[1].substring(0,end)+"additions ");
+	    	 }
+	    	
+	    	return stf.toString();
+	    }
+	    public static String getDelMete(String content){       //å¾—åˆ°å±€éƒ¨ä»£ç çš„change file delete é‡
+	    	String pat1 = "<span class=\"diffstat-icon\">âˆ’</span>";
+	    	String title[] = content.split(pat1);
+	    	 StringBuffer stf = new StringBuffer();
+	    	//System.out.println(title[1]+title.length);
+	    	 if(title.length !=1){
+	    	  int end = title[1].indexOf("</span>");
+	    	  
+	    	stf.append(title[1].substring(0,end)+"deletes ");
+	    	
+	    	 }
+	    	return stf.toString();
+	    }
 	    
 	 
 	}
